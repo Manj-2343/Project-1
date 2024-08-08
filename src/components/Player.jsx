@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Player = ({ initialName, symbol, isActive }) => {
+const Player = ({ initialName, symbol, isActive, onChangeName }) => {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -10,6 +10,9 @@ const Player = ({ initialName, symbol, isActive }) => {
     //setIsEditing(!isEditing);=> when you write again;schedule a state update to true;
     setIsEditing((wasEditing) => !wasEditing);
     // setIsEditing((wasEditing) => !wasEditing);//if we write the same in two time nothing happen
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
   function handleChange(event) {
     setPlayerName(event.target.value);
